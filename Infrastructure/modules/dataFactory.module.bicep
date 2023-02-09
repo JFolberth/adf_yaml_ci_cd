@@ -4,13 +4,31 @@ param dataFactoryName string
 param location string
 @description('Log Analytics WorksSpaceID')
 param logAnalyticsWorkspaceId string
+@description('GitHub account')
+param gitHubAccountName string = 'JFolberth'
+@description('GitHub collobration branch')
+param gitHubCollobarationBranch string = 'main'
+@description('GitHub repository name')
+param gitHubRepositoryName string = 'adf_pipelines_yaml_ci_cd'
+
+
 
 
 resource df 'Microsoft.DataFactory/factories@2018-06-01' = {
-  name: 'df-${dataFactoryName}'
+  name: 'adf-${dataFactoryName}'
   location: location
   identity: {
     type: 'SystemAssigned'
+  }
+  properties: {
+    repoConfiguration: {
+      type: 'FactoryGitHubConfiguration'
+      accountName: gitHubAccountName
+      rootFolder: '/'
+      disablePublish:true
+      collaborationBranch:gitHubCollobarationBranch
+      repositoryName: gitHubRepositoryName
+    }
   }
 }
 resource diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' ={
