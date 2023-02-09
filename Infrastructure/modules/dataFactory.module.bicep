@@ -62,3 +62,5 @@ resource diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-pr
   workspaceId: logAnalyticsWorkspaceId
  }
 }
+output dataFactoryIdentityId string = df.identity.principalId
+

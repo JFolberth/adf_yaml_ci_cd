@@ -4,7 +4,8 @@ param location string
 param baseName string = 'adfdemo'
 @description('Three letter environment abreviation to denote environment that will appear in all resource names') 
 param environmentName string = 'dev'
-
+@description('Storage Account type')
+param storageAccountType string = 'Standard_LRS'
 
 
 targetScope = 'subscription'
@@ -45,5 +46,16 @@ module logAnalytics 'modules/logAnalytics.module.bicep' ={
   params:{
     location: location
     logAnalyticsName: nameSuffix
+  }
+}
+
+module storageAccount 'modules/storageAccount.module.bicep' ={
+  name: 'storageAccountModule'
+  scope: resourceGroup
+  params:{
+    location: location
+    storageAccountName: nameSuffix
+    storageAccountType: storageAccountType
+    dataFactoryIdentityId: dataFactory.outputs.dataFactoryIdentityId
   }
 }
