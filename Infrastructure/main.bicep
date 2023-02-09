@@ -35,5 +35,15 @@ module dataFactory 'modules/dataFactory.module.bicep' ={
   params:{
     location: location
     dataFactoryName: nameSuffix
+    logAnalyticsWorkspaceId: logAnalytics.outputs.logAnalyticsWorkspaceId
+  }
+}
+
+module logAnalytics 'modules/logAnalytics.module.bicep' ={
+  name: 'logAnalyticsModule'
+  scope: resourceGroup
+  params:{
+    location: location
+    logAnalyticsName: nameSuffix
   }
 }
