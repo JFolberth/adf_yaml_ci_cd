@@ -10,6 +10,10 @@ param gitHubAccountName string = 'JFolberth'
 param gitHubCollobarationBranch string = 'main'
 @description('GitHub repository name')
 param gitHubRepositoryName string = 'adf_pipelines_yaml_ci_cd'
+@description('Publish from branch')
+param publishFromBranch bool = true
+@description('Azure Data Factory Root Folder')
+param gitHubADFRootFolder string = 'adf'
 
 
 
@@ -24,8 +28,8 @@ resource df 'Microsoft.DataFactory/factories@2018-06-01' = {
     repoConfiguration: {
       type: 'FactoryGitHubConfiguration'
       accountName: gitHubAccountName
-      rootFolder: '/'
-      disablePublish:true
+      rootFolder: gitHubADFRootFolder
+      disablePublish:publishFromBranch
       collaborationBranch:gitHubCollobarationBranch
       repositoryName: gitHubRepositoryName
     }
