@@ -39,10 +39,10 @@ resource blobDataContributorRoleDefinition 'Microsoft.Authorization/roleDefiniti
 
 resource dataFactoryRBAC 'Microsoft.Authorization/roleAssignments@2022-04-01'={
   name: guid(dataFactoryIdentityId, sa.id, blobDataContributorRoleDefinition.id)
+  scope: sa
   properties: {
     roleDefinitionId: blobDataContributorRoleDefinition.id
     principalId: dataFactoryIdentityId
     principalType: 'ServicePrincipal'
-    scope: sa
   }
 }
