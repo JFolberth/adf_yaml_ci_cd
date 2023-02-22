@@ -5,15 +5,15 @@ param location string
 @description('Log Analytics WorksSpaceID')
 param logAnalyticsWorkspaceId string
 @description('GitHub account')
-param gitHubAccountName string = 'JFolberth'
+param gitHubAccountName string 
 @description('GitHub collobration branch')
-param gitHubCollobarationBranch string = 'main'
+param gitHubCollobarationBranch string 
 @description('GitHub repository name')
-param gitHubRepositoryName string = 'adf_pipelines_yaml_ci_cd'
+param gitHubRepositoryName string
+@description('Azure Data Factory Root Folder')
+param gitHubADFRootFolder string
 @description('Publish from branch')
 param disablePublish bool = true
-@description('Azure Data Factory Root Folder')
-param gitHubADFRootFolder string = 'adf'
 
 
 
@@ -25,14 +25,14 @@ resource df 'Microsoft.DataFactory/factories@2018-06-01' = {
     type: 'SystemAssigned'
   }
   properties: {
-    repoConfiguration: {
+   repoConfiguration: !empty(gitHubAccountName) ? { 
       type: 'FactoryGitHubConfiguration'
       accountName: gitHubAccountName
       rootFolder: gitHubADFRootFolder
       disablePublish:disablePublish
       collaborationBranch:gitHubCollobarationBranch
       repositoryName: gitHubRepositoryName
-    }
+    }: {}
   }
 }
 resource diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' ={

@@ -6,7 +6,14 @@ param baseName string = 'adfdemo'
 param environmentName string = 'dev'
 @description('Storage Account type')
 param storageAccountType string = 'Standard_LRS'
-
+@description('GitHub account')
+param gitHubAccountName string = ''
+@description('GitHub collobration branch')
+param gitHubCollobarationBranch string = ''
+@description('GitHub repository name')
+param gitHubRepositoryName string = ''
+@description('Azure Data Factory Root Folder')
+param gitHubADFRootFolder string = ''
 
 targetScope = 'subscription'
 
@@ -37,6 +44,10 @@ module dataFactory 'modules/dataFactory.module.bicep' ={
     location: location
     dataFactoryName: nameSuffix
     logAnalyticsWorkspaceId: logAnalytics.outputs.logAnalyticsWorkspaceId
+    gitHubAccountName: gitHubAccountName
+    gitHubCollobarationBranch: gitHubCollobarationBranch
+    gitHubRepositoryName: gitHubRepositoryName
+    gitHubADFRootFolder: gitHubADFRootFolder
   }
 }
 

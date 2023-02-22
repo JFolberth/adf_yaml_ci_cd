@@ -7,6 +7,18 @@
       },
       "location":{
         "value":"eastus"
-      } 
+      },
+      "gitHubAccountName":{
+        "value":"JFolberth"
+      },
+      "gitHubCollobarationBranch":{
+        "value":"main"
+      },
+      "gitHubRepositoryName":{
+        "value":"adf_pipelines_yaml_ci_cd"
+      },
+      "gitHubADFRootFolder":{
+        "value":"adf"
+      }
     }
   }
