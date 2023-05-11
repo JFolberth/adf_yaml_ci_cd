@@ -32,7 +32,7 @@ resource df 'Microsoft.DataFactory/factories@2018-06-01' = {
       disablePublish:disablePublish
       collaborationBranch:gitHubCollobarationBranch
       repositoryName: gitHubRepositoryName
-    }: {disablePublish:disablePublish}
+    }: ''
   }
 }
 resource diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' ={
