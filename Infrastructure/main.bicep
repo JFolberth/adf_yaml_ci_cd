@@ -7,7 +7,7 @@ param environmentName string = 'dev'
 @description('Storage Account type')
 param storageAccountType string = 'Standard_LRS'
 @description('GitHub account')
-param gitHubAccountName string
+param gitHubAccountName string = ''
 @description('GitHub collobration branch')
 param gitHubCollobarationBranch string = ''
 @description('GitHub repository name')
