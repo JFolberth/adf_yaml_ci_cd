@@ -43,20 +43,12 @@ resource diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-pr
     {
       categoryGroup:'allLogs'
       enabled: true
-      retentionPolicy: {
-        days: 10
-        enabled: true
-      }
     }
   ]
   metrics: [
     {
       category: 'AllMetrics'
       enabled: true
-      retentionPolicy: {
-        days: 10
-        enabled: true
-      }
     }
   ]
   workspaceId: logAnalyticsWorkspaceId
