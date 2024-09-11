@@ -10,6 +10,7 @@ resource la 'Microsoft.OperationalInsights/workspaces@2023-09-01'= {
     sku: {
       name: 'PerGB2018'
     }
+retentionInDays: 365
   }
 }
 output logAnalyticsWorkspaceId string = la.id
